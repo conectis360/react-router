@@ -4,6 +4,9 @@ import { ProductPage } from "./pages/ProductPage";
 import App from "./App";
 import { ErrorPage } from "./pages/ErrorPage";
 import { HomePage } from "./pages/HomePage";
+import { lazy, Suspense } from "react";
+
+const AdminPage = lazy(() => import("./pages/AdminPage"));
 
 const router = createBrowserRouter([
   {
@@ -11,6 +14,20 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "admin",
+        element: (
+          <Suspense
+            fallback={
+              <div className="text-center p-5 text-xltext-slate-00">
+                Loading...
+              </div>
+            }
+          >
+            <AdminPage />
+          </Suspense>
+        ),
+      },
       {
         index: true,
         element: <HomePage />,
