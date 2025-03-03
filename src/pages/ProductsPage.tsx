@@ -1,4 +1,5 @@
 import { products } from "../data/products";
+import { Link } from "react-router-dom";
 
 export function ProductsPage() {
   return (
@@ -8,9 +9,13 @@ export function ProductsPage() {
       </h2>
       <ul className="list-none m-0 p-0">
         {products.map((product) => (
-          <li key={product.id} className="p-1 text-base text-slate-800">
+          <Link
+            to={`${product.id}`}
+            className="p-1 text-base text-slate-800
+hover:underline"
+          >
             {product.name}
-          </li>
+          </Link>
         ))}
       </ul>
     </div>
